@@ -2,6 +2,7 @@
    Portfolio — script.js
    Android Developer: Saddam
    ============================================ */
+const VERSION = '1.1'; // Change this number to refresh cached images
 document.documentElement.classList.add('js-enabled');
 console.log("Portfolio script starting...");
 
@@ -437,7 +438,7 @@ function renderProjects() {
   const grid = document.getElementById('projectsGrid');
   if (!grid) return;
   grid.innerHTML = PROJECTS.map(p => {
-    const imgSrc = p.images.length > 0 ? p.images[0] : PLACEHOLDER;
+    const imgSrc = p.images.length > 0 ? `${p.images[0]}?v=${VERSION}` : PLACEHOLDER;
     const imgCount = p.images.length;
     return `
       <a href="project.html?id=${p.id}" class="project-card reveal">
@@ -532,7 +533,7 @@ function renderProjectDetail() {
             <div class="gallery-track snap" id="galleryTrack">
               ${images.map((src, i) => `
                 <div class="gallery-item" data-index="${i}">
-                  <img src="${src}" alt="${project.title} screenshot ${i + 1}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async" />
+                  <img src="${src}?v=${VERSION}" alt="${project.title} screenshot ${i + 1}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async" />
                 </div>
               `).join('')}
             </div>
@@ -735,7 +736,7 @@ function openLightbox(index) {
   const img = document.getElementById('lightboxImg');
   const counter = document.getElementById('lightboxCounter');
 
-  img.src = galleryState.images[index];
+  img.src = `${galleryState.images[index]}?v=${VERSION}`;
   img.alt = `${galleryState.title} screenshot ${index + 1}`;
   counter.textContent = `${index + 1} / ${galleryState.total}`;
   lightbox.classList.add('open');
@@ -756,7 +757,7 @@ function lightboxNav(dir) {
   galleryState.current = next;
   const img = document.getElementById('lightboxImg');
   const counter = document.getElementById('lightboxCounter');
-  img.src = galleryState.images[next];
+  img.src = `${galleryState.images[next]}?v=${VERSION}`;
   img.alt = `${galleryState.title} screenshot ${next + 1}`;
   counter.textContent = `${next + 1} / ${galleryState.total}`;
 }

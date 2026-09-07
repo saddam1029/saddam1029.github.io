@@ -117,3 +117,23 @@ To add a new project:
 - **Project Showcase**: Image-first gallery with touch-swipe, snap, and lightbox.
 - **Responsive Design**: Works perfectly from 320px mobile to 4K desktop.
 - **Zero Dependencies**: No React, no Vite, no Node.js required. Completely static.
+
+## How to Refresh Images (Cache Busting)
+
+If you change an image file but keep the same name (e.g., `01.png`), your browser might still show the old version. To fix this:
+
+1.  Open `script.js`.
+2.  Find `const VERSION = '1.1';` at the very top.
+3.  Change it to `1.2` (or any other number).
+4.  Push the change to GitHub.
+
+This forces all browsers to download the latest images immediately.
+
+## Troubleshooting: Blank Page after Deployment
+
+If you see a blank page at `https://saddam1029.github.io/`:
+
+1.  **Force Refresh**: Press `Ctrl + F5` (Windows) or `Cmd + Shift + R` (Mac). This is the most common fix.
+2.  **Check Repository Structure**: Ensure `index.html` is in the **root** folder, not inside `public/`.
+3.  **Wait for Deployment**: Check your GitHub repository **Actions** tab to ensure the "pages-build-deployment" has finished.
+4.  **Browser Console**: Press `F12`, go to the **Console** tab, and look for red error messages.
