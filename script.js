@@ -2,6 +2,8 @@
    Portfolio — script.js
    Android Developer: Saddam
    ============================================ */
+document.documentElement.classList.add('js-enabled');
+console.log("Portfolio script starting...");
 
 /* ============================================
    PERSONAL INFO — Edit these fields
@@ -985,4 +987,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Reveal Animations (Last, after everything is in DOM)
   initReveal();
+
+  // 5. Emergency Fallback: Make everything visible after 1s if animations stalled
+  setTimeout(() => {
+    const hidden = document.querySelectorAll('.reveal:not(.visible)');
+    if (hidden.length > 0) {
+      console.log(`Revealing ${hidden.length} stalled elements`);
+      hidden.forEach(el => el.classList.add('visible'));
+    }
+  }, 1000);
 });
