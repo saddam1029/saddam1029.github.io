@@ -499,6 +499,62 @@ function initGallery() {
 }
 
 /* =========================================================================
+   LIGHTBOX
+   ========================================================================= */
+function initLightbox() {
+  const lb = document.createElement("div");
+  lb.id = "lightbox";
+  lb.innerHTML = `
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-content">
+      <img src="" alt="Full size view">
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+    </div>
+  `;
+  document.body.appendChild(lb);
+
+  const overlay = lb.querySelector(".lightbox-overlay");
+  const closeBtn = lb.querySelector(".lightbox-close");
+
+  overlay.addEventListener("click", closeLightbox);
+  closeBtn.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+
+  // Global image click listener
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    // Check if the clicked element is an image and is either in a gallery or a project tile
+    if (target.tagName === "IMG" && (target.closest(".gallery-frame") || target.closest(".project-tile-media"))) {
+      // If it's in the project grid, we prevent navigation to open the lightbox instead
+      if (target.closest(".project-tile-media")) {
+        e.preventDefault();
+      }
+      openLightbox(target.src);
+    }
+  });
+}
+
+function openLightbox(src) {
+  const lb = document.getElementById("lightbox");
+  const img = lb?.querySelector("img");
+  if (!lb || !img) return;
+
+  img.src = src;
+  lb.classList.add("is-active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  const lb = document.getElementById("lightbox");
+  if (!lb) return;
+  lb.classList.remove("is-active");
+  document.body.style.overflow = "";
+}
+
+/* =========================================================================
    INIT
    ========================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -507,4 +563,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjectsGrid();
   renderProjectDetail();
   initScrollReveal();
+  initLightbox();
 });
