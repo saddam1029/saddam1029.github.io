@@ -464,7 +464,7 @@ function renderCertifications() {
   const grid = document.getElementById('certGrid');
   if (!grid) return;
   grid.innerHTML = CERTIFICATIONS.map(c => `
-    <div class="cert-card reveal" ${c.url ? `onclick="window.open('${c.url}', '_blank')` : ''}>
+    <div class="cert-card reveal" ${c.url ? `onclick="window.open('${c.url}', '_blank')"` : ''}>
       <div class="cert-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
       </div>
@@ -685,8 +685,8 @@ function initGallery(images, title) {
   function handleSwipe() {
     const diff = touchStartX - touchEndX;
     if (Math.abs(diff) > 50) {
-      if (diff > 0) galleryNav(1);
-      else galleryNav(-1);
+      if (diff > 0) galleryNav(dir = 1);
+      else galleryNav(dir = -1);
     }
   }
 }
@@ -841,6 +841,11 @@ function initNav() {
    REVEAL ANIMATIONS
    ============================================ */
 function initReveal() {
+  if (typeof IntersectionObserver === 'undefined') {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -907,19 +912,20 @@ function renderPersonal() {
   // Update name in logo and footer
   document.querySelectorAll('.nav-logo, .footer-brand').forEach(el => {
     const dot = el.querySelector('.dot');
+    const role = el.querySelector('.role');
+
+    // Safety check to not destroy existing elements
     if (dot) {
+      // Logic for logo: Keep dot, update text
       el.innerHTML = '';
       el.appendChild(dot);
       el.appendChild(document.createTextNode(' ' + PERSONAL.name));
+    } else if (role) {
+      // Logic for footer: Update text, keep role
+      el.innerHTML = PERSONAL.name;
+      el.appendChild(role);
     } else {
-      // For footer brand, it might not have the dot
-      const role = el.querySelector('.role');
-      if (role) {
-        el.innerHTML = PERSONAL.name;
-        el.appendChild(role);
-      } else {
-        el.textContent = PERSONAL.name;
-      }
+      el.textContent = PERSONAL.name;
     }
   });
 
@@ -930,17 +936,14 @@ function renderPersonal() {
 
   // Update email links
   document.querySelectorAll('[href^="mailto:"]').forEach(el => {
-    if (PERSONAL.email && PERSONAL.email !== '[your-email@example.com]') {
+    if (PERSONAL.email && PERSONAL.email.indexOf('[') === -1) {
       el.href = `mailto:${PERSONAL.email}`;
-      if (el.textContent.trim().toLowerCase() === 'email' || el.textContent.trim().toLowerCase() === 'email me') {
-        // preserve text
-      }
     }
   });
 
   // Update LinkedIn links
   document.querySelectorAll('[href*="linkedin.com"]').forEach(el => {
-    if (PERSONAL.linkedin && PERSONAL.linkedin !== '[your-linkedin-url]') {
+    if (PERSONAL.linkedin && PERSONAL.linkedin.indexOf('[') === -1) {
       el.href = PERSONAL.linkedin;
     }
   });
@@ -957,55 +960,29 @@ function renderPersonal() {
    INIT
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  // Set year
+  // 1. Set year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Render personal info
-  renderPersonal();
-
-  // Init navigation
-  initNav();
-
-  // Init reveal animations
-  initReveal();
-
-  // Init lightbox events (always, since lightbox markup is on project page)
-  initLightboxEvents();
-
-  // Homepage rendering
-  renderSkills();
-  renderProjects();
-  renderCertifications();
-
-  // Re-observe new reveal elements
-  if (typeof IntersectionObserver !== 'undefined') {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // 2. Dynamic Rendering
+  try {
+    renderPersonal();
+    renderSkills();
+    renderProjects();
+    renderCertifications();
+    renderProjectDetail();
+  } catch (e) {
+    console.error('Rendering failed', e);
   }
 
-  // Project detail page rendering
-  renderProjectDetail();
+  // 3. UI Interactions
+  try {
+    initNav();
+    initLightboxEvents();
+  } catch (e) {
+    console.error('UI init failed', e);
+  }
 
-  // Handle window resize for gallery mode switch
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (document.getElementById('projectContent')) {
-        const gallery = document.querySelector('.gallery-mobile, .gallery-desktop');
-        if (gallery) {
-          const isMobile = window.innerWidth < 768;
-          gallery.className = isMobile ? 'gallery-mobile' : 'gallery-desktop';
-        }
-      }
-    }, 200);
-  });
+  // 4. Reveal Animations (Last, after everything is in DOM)
+  initReveal();
 });
