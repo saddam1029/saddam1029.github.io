@@ -1010,13 +1010,14 @@ ul { list-style: none; }
 /* ---------- Reveal Animations ---------- */
 .reveal {
   opacity: 1;
-}
-.js-enabled .reveal {
-  opacity: 0;
-  transform: translateY(30px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-.js-enabled .reveal.visible {
+.reveal:not(.visible) {
+  /* Comment out to force visibility if animations fail */
+  /* opacity: 0;
+  transform: translateY(30px); */
+}
+.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }

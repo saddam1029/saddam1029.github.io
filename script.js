@@ -3,7 +3,6 @@
    Android Developer: Saddam
    ============================================ */
 const VERSION = '1.1'; // Change this number to refresh cached images
-document.documentElement.classList.add('js-enabled');
 console.log("Portfolio script starting...");
 
 /* ============================================
