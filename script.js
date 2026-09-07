@@ -901,12 +901,68 @@ function initLightboxEvents() {
 }
 
 /* ============================================
+   RENDER: Personal Info (consistency)
+   ============================================ */
+function renderPersonal() {
+  // Update name in logo and footer
+  document.querySelectorAll('.nav-logo, .footer-brand').forEach(el => {
+    const dot = el.querySelector('.dot');
+    if (dot) {
+      el.innerHTML = '';
+      el.appendChild(dot);
+      el.appendChild(document.createTextNode(' ' + PERSONAL.name));
+    } else {
+      // For footer brand, it might not have the dot
+      const role = el.querySelector('.role');
+      if (role) {
+        el.innerHTML = PERSONAL.name;
+        el.appendChild(role);
+      } else {
+        el.textContent = PERSONAL.name;
+      }
+    }
+  });
+
+  // Update role in footer
+  document.querySelectorAll('.footer-brand .role').forEach(el => {
+    el.textContent = PERSONAL.role;
+  });
+
+  // Update email links
+  document.querySelectorAll('[href^="mailto:"]').forEach(el => {
+    if (PERSONAL.email && PERSONAL.email !== '[your-email@example.com]') {
+      el.href = `mailto:${PERSONAL.email}`;
+      if (el.textContent.trim().toLowerCase() === 'email' || el.textContent.trim().toLowerCase() === 'email me') {
+        // preserve text
+      }
+    }
+  });
+
+  // Update LinkedIn links
+  document.querySelectorAll('[href*="linkedin.com"]').forEach(el => {
+    if (PERSONAL.linkedin && PERSONAL.linkedin !== '[your-linkedin-url]') {
+      el.href = PERSONAL.linkedin;
+    }
+  });
+
+  // Update GitHub links
+  document.querySelectorAll('[href*="github.com"]').forEach(el => {
+    if (PERSONAL.github) {
+      el.href = PERSONAL.github;
+    }
+  });
+}
+
+/* ============================================
    INIT
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // Set year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Render personal info
+  renderPersonal();
 
   // Init navigation
   initNav();
