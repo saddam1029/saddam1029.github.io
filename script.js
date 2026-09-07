@@ -2,8 +2,11 @@
    Portfolio — script.js
    Android Developer: Saddam
    ============================================ */
-const VERSION = '1.1'; // Change this number to refresh cached images
-console.log("Portfolio script starting...");
+// Auto-detect version from script tag to bust image cache
+const SCRIPT_URL = document.currentScript ? document.currentScript.src : '';
+const VERSION = SCRIPT_URL.includes('?v=') ? SCRIPT_URL.split('?v=')[1] : '1.0';
+
+console.log("Portfolio script starting with version:", VERSION);
 
 /* ============================================
    PERSONAL INFO — Edit these fields
