@@ -413,8 +413,12 @@ function renderProjectDetail() {
 
     <section class="gallery" data-reveal aria-label="${project.title} screenshot gallery">
       <div class="gallery-frame">
-        <img id="gallery-image" src="${images[0]}" alt="${project.title} screenshot 1 of ${images.length}"
-             onerror="this.closest('.gallery-frame').classList.add('img-missing')">
+        ${images.map((src, i) => `
+          <img src="${src}" alt="${project.title} screenshot ${i+1}"
+               class="${i === 0 ? 'is-active' : ''}"
+               data-index="${i}"
+               onerror="this.style.display='none'">
+        `).join("")}
         <button class="gallery-nav prev" type="button" aria-label="Previous screenshot">&#8249;</button>
         <button class="gallery-nav next" type="button" aria-label="Next screenshot">&#8250;</button>
       </div>
@@ -458,22 +462,22 @@ function renderProjectDetail() {
 
 function initGallery() {
   const frame = document.querySelector(".gallery-frame");
-  const img = document.getElementById("gallery-image");
+  const imgs = frame?.querySelectorAll("img");
   const dots = document.querySelectorAll(".gallery-dot");
   const prevBtn = document.querySelector(".gallery-nav.prev");
   const nextBtn = document.querySelector(".gallery-nav.next");
-  if (!frame || !img) return;
+  if (!frame || !imgs?.length) return;
 
   function show(index) {
     const total = galleryState.images.length;
     galleryState.index = (index + total) % total;
-    frame.classList.remove("img-missing");
-    img.style.opacity = "0";
-    setTimeout(() => {
-      img.src = galleryState.images[galleryState.index];
-      img.alt = `Screenshot ${galleryState.index + 1} of ${total}`;
-      img.style.opacity = "1";
-    }, 120);
+
+    // Desktop: toggle class
+    imgs.forEach((img, i) => {
+      img.classList.toggle("is-active", i === galleryState.index);
+    });
+
+    // Update dots
     dots.forEach((d, i) => d.classList.toggle("is-active", i === galleryState.index));
   }
 
