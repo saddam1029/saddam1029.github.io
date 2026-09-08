@@ -14,39 +14,72 @@ console.log("Portfolio script starting with version:", VERSION);
 const PERSONAL = {
   name: 'Saddam',
   role: 'Android Developer',
-  email: '[your-email@example.com]',
+  email: 'saddam.jaff07@gmail.com',
   github: 'https://github.com/saddam1029',
-  linkedin: '[your-linkedin-url]',
+  linkedin: 'https://www.linkedin.com/in/syed-saddam-4ab1a71b7',
 };
-
 /* ============================================
    PROJECTS — Edit, add, or remove projects here
    ============================================ */
 const PROJECTS = [
-  {
-    id: 'ai-voice-translator',
-    title: 'AI Voice Translator',
-    category: 'Android App',
-    description: '[Add project description]',
-    overview: '[Add project overview — describe what the app does, who it\'s for, and what problem it solves.]',
-    role: 'Android Developer',
-    platform: 'Android',
-    technologies: ['Kotlin', 'Android', 'MVVM', 'Coroutines', 'Retrofit'],
-    features: [
-      '[Add feature]',
-      '[Add feature]',
-      '[Add feature]',
-      '[Add feature]',
-    ],
-    images: [
-      'assets/projects/ai-voice-translator/01.png',
-      'assets/projects/ai-voice-translator/02.png',
-      'assets/projects/ai-voice-translator/03.png',
-      'assets/projects/ai-voice-translator/04.png',
-    ],
-    githubUrl: '',
-    liveUrl: '',
-  },
+{
+id: 'ai-voice-translator',
+title: 'AI Voice Translator',
+category: 'Android App',
+description: 'An AI-powered multilingual translation app that provides text, voice, camera, conversation, and file translation with translation history, phrases, and dictionary features.',
+overview: 'AI Voice Translator is a feature-rich multilingual Android translation application designed to make communication across languages simple and accessible. The app supports text translation, voice translation, camera-based text recognition and translation, real-time voice conversations, file translation, saved phrases, dictionary lookup, and complete translation history management. It also provides multi-language support with a modern interface and both dark and light themes.',
+role: 'Android Developer',
+platform: 'Android',
+technologies: [
+'Kotlin',
+'Android',
+'MVVM',
+'Clean Architecture',
+'Coroutines',
+'Retrofit',
+'REST APIs',
+'CameraX',
+'Speech Recognition',
+'Text-to-Speech',
+'Room Database'
+],
+features: [
+'AI-powered text translation with multi-language support',
+'Voice-to-voice translation using speech recognition and text-to-speech',
+'Camera translation with text detection and translation from images',
+'Real-time voice conversation translation',
+'File translation for translating supported documents',
+'Phrases and frequently used translations for quick access',
+'Built-in multilingual dictionary and word lookup',
+'Complete translation history with management and search',
+'Support for multiple languages and translation directions',
+'Dark mode and light mode with a modern responsive UI'
+],
+images: [
+'assets/projects/ai-voice-translator/01.png',
+'assets/projects/ai-voice-translator/02.png',
+'assets/projects/ai-voice-translator/03.png',
+'assets/projects/ai-voice-translator/04.png',
+'assets/projects/ai-voice-translator/21.png',
+'assets/projects/ai-voice-translator/05.png',
+'assets/projects/ai-voice-translator/07.png',
+'assets/projects/ai-voice-translator/08.png',
+'assets/projects/ai-voice-translator/09.png',
+'assets/projects/ai-voice-translator/10.png',
+'assets/projects/ai-voice-translator/11.png',
+'assets/projects/ai-voice-translator/12.png',
+'assets/projects/ai-voice-translator/13.png',
+'assets/projects/ai-voice-translator/14.png',
+'assets/projects/ai-voice-translator/15.png',
+'assets/projects/ai-voice-translator/16.png',
+'assets/projects/ai-voice-translator/17.png',
+'assets/projects/ai-voice-translator/18.png',
+'assets/projects/ai-voice-translator/19.png',
+'assets/projects/ai-voice-translator/20.png',
+],
+githubUrl: '',
+liveUrl: 'https://github.com/saddam1029',
+},
   {
     id: 'gps-voice-navigation',
     title: 'GPS Voice Navigation',
@@ -921,12 +954,10 @@ function renderPersonal() {
 
     // Safety check to not destroy existing elements
     if (dot) {
-      // Logic for logo: Keep dot, update text
       el.innerHTML = '';
       el.appendChild(dot);
       el.appendChild(document.createTextNode(' ' + PERSONAL.name));
     } else if (role) {
-      // Logic for footer: Update text, keep role
       el.innerHTML = PERSONAL.name;
       el.appendChild(role);
     } else {
@@ -939,19 +970,19 @@ function renderPersonal() {
     el.textContent = PERSONAL.role;
   });
 
-  // Update email links
-  document.querySelectorAll('[href^="mailto:"]').forEach(el => {
-    if (PERSONAL.email && PERSONAL.email.indexOf('[') === -1) {
-      el.href = `mailto:${PERSONAL.email}`;
-    }
-  });
+ // Update email links
+ document.querySelectorAll('a[href^="mailto:"], a[href*="your-email"]').forEach(el => {
+   if (PERSONAL.email) {
+     el.href = `mailto:${PERSONAL.email}`;
+   }
+ });
 
   // Update LinkedIn links
-  document.querySelectorAll('[href*="linkedin.com"]').forEach(el => {
-    if (PERSONAL.linkedin && PERSONAL.linkedin.indexOf('[') === -1) {
-      el.href = PERSONAL.linkedin;
-    }
-  });
+document.querySelectorAll('a[href*="linkedin.com"], a[href*="your-linkedin-url"]').forEach(el => {
+  if (PERSONAL.linkedin) {
+    el.href = PERSONAL.linkedin;
+  }
+});
 
   // Update GitHub links
   document.querySelectorAll('[href*="github.com"]').forEach(el => {
@@ -960,7 +991,6 @@ function renderPersonal() {
     }
   });
 }
-
 /* ============================================
    INIT
    ============================================ */
