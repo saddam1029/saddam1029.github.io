@@ -78,7 +78,7 @@ images: [
 'assets/projects/ai-voice-translator/20.png',
 ],
 githubUrl: '',
-liveUrl: 'https://github.com/saddam1029',
+liveUrl: 'https://play.google.com/store/apps/details?id=com.tw.aivoice.translate.all.language.translator&hl=en',
 },
   {
     id: 'gps-voice-navigation',
@@ -680,14 +680,30 @@ function initGallery(images, title) {
       scrollTimeout = setTimeout(() => {
         const items = track.querySelectorAll('.gallery-item');
         if (!items.length) return;
-        const itemWidth = items[0].offsetWidth + 16;
-        const newIndex = Math.round(track.scrollLeft / itemWidth);
-        if (newIndex !== galleryState.current && newIndex >= 0 && newIndex < galleryState.total) {
-          galleryState.current = newIndex;
+
+        // Calculate index based on which item is most visible (centered in viewport)
+        const trackRect = track.getBoundingClientRect();
+        const centerX = trackRect.left + trackRect.width / 2;
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        items.forEach((item, i) => {
+          const rect = item.getBoundingClientRect();
+          const itemCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(centerX - itemCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        if (closestIndex !== galleryState.current && closestIndex >= 0 && closestIndex < galleryState.total) {
+          galleryState.current = closestIndex;
           updateGalleryUI();
         }
-      }, 100);
-    });
+      }, 30);
+    }, { passive: true });
 
     // Click items to open lightbox
     track.querySelectorAll('.gallery-item').forEach((item, i) => {
@@ -718,6 +734,31 @@ function initGallery(images, title) {
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
+
+    // Mouse drag for PC
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      track.classList.add('active');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+    track.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 2;
+      track.scrollLeft = scrollLeft - walk;
+    });
   }
 
   function handleSwipe() {
