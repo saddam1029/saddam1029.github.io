@@ -122,10 +122,11 @@ To add a new project:
 
 If you change an image file but keep the same name (e.g., `01.png`), your browser might still show the old version. To fix this:
 
-1.  Open `script.js`.
-2.  Find `const VERSION = '1.1';` at the very top.
-3.  Change it to `1.2` (or any other number).
-4.  Push the change to GitHub.
+1.  Open `index.html` or `project.html`.
+2.  Find the `<script src="script.js?v=1.2"></script>` line.
+3.  Change `1.2` to `1.3` (or any new number).
+4.  Also change it in the CSS link: `<link rel="stylesheet" href="style.css?v=1.2">`.
+5.  Push the change to GitHub.
 
 This forces all browsers to download the latest images immediately.
 

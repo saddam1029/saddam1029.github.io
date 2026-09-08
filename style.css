@@ -463,9 +463,6 @@ ul { list-style: none; }
 }
 
 .project-card:hover .project-card-image img {
-  transform: scale(1.02);
-}
-.project-card:hover .project-card-image img {
   transform: scale(1.04);
 }
 
