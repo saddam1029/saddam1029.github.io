@@ -743,6 +743,7 @@ ul { list-style: none; }
 .gallery-item {
   flex: 0 0 auto;
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--ink);

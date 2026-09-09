@@ -22,7 +22,7 @@ const PERSONAL = {
    PROJECTS — Edit, add, or remove projects here
    ============================================ */
 const PROJECTS = [
-{
+ {
 id: 'ai-voice-translator',
 title: 'AI Voice Translator',
 category: 'Android App',
@@ -80,7 +80,63 @@ images: [
 githubUrl: '',
 liveUrl: 'https://play.google.com/store/apps/details?id=com.tw.aivoice.translate.all.language.translator&hl=en',
 },
-  {
+{
+id: 'gps-navigation',
+title: 'GPS Navigation',
+category: 'Android App',
+description: 'A feature-rich GPS navigation and location utility app built with Google Maps APIs, providing route planning, live navigation, location tools, compass, speedometer, map services, and travel information.',
+overview: 'GPS Navigation is a comprehensive Android navigation and location application designed for everyday navigation, travel, and location-based utilities. The app provides current location and address information, route planning with multiple stops, saved locations such as Home and Office, navigation history, voice-guided navigation, satellite maps, traffic information, street view, nearby places, and multiple compass and speedometer tools. It also includes a camera map feature that captures photos with latitude, longitude, date, time, and current address information. The application supports multiple languages and integrates Google Maps services using the Google Maps API.',
+role: 'Android Developer',
+platform: 'Android',
+technologies: [
+'Kotlin',
+'Android',
+'MVVM',
+'Clean Architecture',
+'Coroutines',
+'Google Maps API',
+'Google Maps SDK',
+'Location APIs',
+'Geocoding',
+'Navigation',
+'CameraX',
+'Google Places API'
+],
+features: [
+'Live GPS location with current address and location details',
+'Route planning with multiple destinations and stops',
+'Saved locations such as Home and Office for quick navigation',
+'Navigation history for previously searched and navigated routes',
+'Voice-guided navigation for hands-free driving',
+'Satellite, normal, and traffic map views',
+'Live traffic information and traffic conditions on roads',
+'Camera Map for capturing photos with latitude, longitude, date, time, and current address',
+'Four compass modes including digital and analog compass interfaces',
+'Digital and analog speedometer with real-time speed information',
+'Nearby places and location-based place discovery',
+'Google Street View integration for exploring locations',
+'Multiple-country information and location-based travel details',
+'Multi-language application support',
+'Google Maps integration using Google Maps API services',
+'Modern UI with support for light and dark themes'
+],
+images: [
+'assets/projects/gps-navigation/01.png',
+'assets/projects/gps-navigation/02.png',
+'assets/projects/gps-navigation/03.png',
+'assets/projects/gps-navigation/04.png',
+'assets/projects/gps-navigation/05.png',
+'assets/projects/gps-navigation/06.png',
+'assets/projects/gps-navigation/07.png',
+'assets/projects/gps-navigation/08.png',
+'assets/projects/gps-navigation/09.png',
+'assets/projects/gps-navigation/10.png',
+],
+githubUrl: '',
+liveUrl: '',
+},
+
+ {
     id: 'gps-voice-navigation',
     title: 'GPS Voice Navigation',
     category: 'Android App',
@@ -347,28 +403,7 @@ liveUrl: 'https://play.google.com/store/apps/details?id=com.tw.aivoice.translate
     githubUrl: '',
     liveUrl: '',
   },
-  {
-    id: 'gps-navigation',
-    title: 'GPS Navigation',
-    category: 'Android App',
-    description: '[Add project description]',
-    overview: '[Add project overview.]',
-    role: 'Android Developer',
-    platform: 'Android',
-    technologies: ['Kotlin', 'Google Maps', 'Location APIs', 'Navigation'],
-    features: [
-      '[Add feature]',
-      '[Add feature]',
-      '[Add feature]',
-    ],
-    images: [
-      'assets/projects/gps-navigation/01.png',
-      'assets/projects/gps-navigation/02.png',
-      'assets/projects/gps-navigation/03.png',
-    ],
-    githubUrl: '',
-    liveUrl: '',
-  },
+
 ];
 
 /* ============================================
@@ -416,30 +451,46 @@ const SKILL_GROUPS = [
    CERTIFICATIONS — Edit certifications here
    ============================================ */
 const CERTIFICATIONS = [
-  {
-    title: '[Add certification name]',
-    issuer: '[Add issuing organization]',
-    date: '[Add date]',
-    credentialId: '[Add credential ID]',
-    url: '',
-    image: 'assets/certification/cert-01.png',
-  },
-  {
-    title: '[Add certification name]',
-    issuer: '[Add issuing organization]',
-    date: '[Add date]',
-    credentialId: '[Add credential ID]',
-    url: '',
-    image: 'assets/certification/cert-02.png',
-  },
-  {
-    title: '[Add certification name]',
-    issuer: '[Add issuing organization]',
-    date: '[Add date]',
-    credentialId: '[Add credential ID]',
-    url: '',
-    image: 'assets/certification/cert-03.png',
-  },
+{
+title: 'Programming Fundamentals in Kotlin',
+issuer: 'Meta',
+date: '',
+credentialId: '',
+url: 'https://coursera.org/share/285e6f64293854078de2ed1b81d8d0bf',
+image: 'assets/certification/cert-01.png',
+},
+{
+title: 'Create the User Interface in Android Studio',
+issuer: 'Meta',
+date: '',
+credentialId: '',
+url: 'https://coursera.org/share/275434e26859f83b844270dd9caade66',
+image: 'assets/certification/cert-02.png',
+},
+{
+title: 'Advanced Programming in Kotlin',
+issuer: 'Meta',
+date: '',
+credentialId: '',
+url: 'https://coursera.org/share/7f80c9046676151136a074402f06151c',
+image: 'assets/certification/cert-03.png',
+},
+{
+title: 'Introduction to Android App Development',
+issuer: 'Meta',
+date: '',
+credentialId: '',
+url: 'https://coursera.org/share/5c810512f5679b2453a70c18312351ad',
+image: 'assets/certification/cert-04.png',
+},
+{
+title: 'Prompt Engineering for ChatGPT',
+issuer: 'Vanderbilt University',
+date: '',
+credentialId: '',
+url: 'https://coursera.org/share/334525e3c99cbca75c309afd684bca1c',
+image: 'assets/certification/cert-05.png',
+},
 ];
 
 /* ============================================
@@ -721,21 +772,8 @@ function initGallery(images, title) {
     });
   });
 
-  // Touch swipe for mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-
+  // Mouse drag for PC
   if (track) {
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    // Mouse drag for PC
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -748,9 +786,11 @@ function initGallery(images, title) {
     });
     track.addEventListener('mouseleave', () => {
       isDown = false;
+      track.classList.remove('active');
     });
     track.addEventListener('mouseup', () => {
       isDown = false;
+      track.classList.remove('active');
     });
     track.addEventListener('mousemove', (e) => {
       if (!isDown) return;
@@ -759,14 +799,6 @@ function initGallery(images, title) {
       const walk = (x - startX) * 2;
       track.scrollLeft = scrollLeft - walk;
     });
-  }
-
-  function handleSwipe() {
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) galleryNav(dir = 1);
-      else galleryNav(dir = -1);
-    }
   }
 }
 
@@ -782,9 +814,14 @@ function goToSlide(index) {
   const track = document.getElementById('galleryTrack');
   if (track) {
     const items = track.querySelectorAll('.gallery-item');
-    if (items.length > 0 && items[index]) {
-      const itemWidth = items[0].offsetWidth + 16;
-      track.scrollTo({ left: itemWidth * index, behavior: 'smooth' });
+    const item = items[index];
+    if (item) {
+      const trackWidth = track.clientWidth;
+      const itemWidth = item.offsetWidth;
+      const itemLeft = item.offsetLeft;
+      const scrollToPos = itemLeft - (trackWidth - itemWidth) / 2;
+
+      track.scrollTo({ left: scrollToPos, behavior: 'smooth' });
     }
   }
   updateGalleryUI();
