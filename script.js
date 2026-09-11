@@ -201,6 +201,7 @@ features: [
 'Multi-language support for a localized user experience'
 ],
 images: [
+'assets/projects/signature-maker/01.png',
 'assets/projects/signature-maker/02.png',
 'assets/projects/signature-maker/03.png',
 'assets/projects/signature-maker/04.png',
@@ -257,6 +258,7 @@ features: [
 'Responsive layouts across different Android screen sizes'
 ],
 images: [
+'assets/projects/neon-clock/01.png',
 'assets/projects/neon-clock/02.png',
 'assets/projects/neon-clock/03.png',
 'assets/projects/neon-clock/04.png',
