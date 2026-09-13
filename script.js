@@ -157,7 +157,7 @@ liveUrl: '',
       'assets/projects/gps-voice-navigation/04.png',
     ],
     githubUrl: '',
-    liveUrl: '',
+    liveUrl: 'https://play.google.com/store/apps/details?id=tw.gps.voice.navigation.route.find.map.direction&pcampaignid=web_share',
   },
 {
 id: 'signature-maker',
