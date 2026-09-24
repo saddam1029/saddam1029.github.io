@@ -512,6 +512,7 @@ features: [
 'Centralized location and camera permission management using Activity Result APIs'
 ],
 images: [
+'assets/projects/live-earth-map/01.png',
 'assets/projects/live-earth-map/02.png',
 'assets/projects/live-earth-map/03.png',
 'assets/projects/live-earth-map/04.png',
