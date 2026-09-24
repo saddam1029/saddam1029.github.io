@@ -354,6 +354,7 @@ liveUrl: '',
   'Secure local media storage for diary images and audio recordings'
   ],
   images: [
+  'assets/projects/my-diary/01.png',
   'assets/projects/my-diary/02.png',
   'assets/projects/my-diary/03.png',
   'assets/projects/my-diary/04.png',
