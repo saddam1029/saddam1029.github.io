@@ -525,7 +525,6 @@ images: [
 githubUrl: '',
 liveUrl: '',
 },
-```js
 {
   id: 'notes-todo',
   title: 'Notes & To-do List',
@@ -581,7 +580,6 @@ liveUrl: '',
   githubUrl: '',
   liveUrl: '',
 },
-```
   {
     id: 'ai-language-translator',
     title: 'AI Language Translator',
