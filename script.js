@@ -570,6 +570,7 @@ liveUrl: '',
     'Settings for language, themes, notifications, reminders, sharing, feedback, and privacy policy'
   ],
   images: [
+    'assets/projects/notes-todo/01.jpeg',
     'assets/projects/notes-todo/02.png',
     'assets/projects/notes-todo/03.png',
     'assets/projects/notes-todo/04.png',
@@ -648,6 +649,7 @@ features: [
 'Android compatibility handling for modern system restrictions and hotspot settings'
 ],
 images: [
+'assets/projects/wifi-manager/00.jpeg',
 'assets/projects/wifi-manager/01.png',
 'assets/projects/wifi-manager/02.png',
 'assets/projects/wifi-manager/03.png',
