@@ -309,6 +309,8 @@ images: [
 'assets/projects/etmaen/01.png',
 'assets/projects/etmaen/02.png',
 'assets/projects/etmaen/03.png',
+'assets/projects/etmaen/04.png',
+'assets/projects/etmaen/05.png',
 ],
 githubUrl: '',
 liveUrl: '',
