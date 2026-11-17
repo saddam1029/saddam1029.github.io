@@ -24,7 +24,7 @@ export function Hero() {
         <div className="hero-grid">
           <div className="hero-content">
             <motion.div className="hero-label" {...item(0.05)}>
-              {PERSONAL.role}
+              {PERSONAL.tagline}
             </motion.div>
             <motion.p className="hero-status" {...item(0.12)}>
               <span className="status-dot" aria-hidden />
@@ -34,7 +34,7 @@ export function Hero() {
               Building Android experiences that are <em>fast</em>, useful, and beautifully engineered.
             </motion.h1>
             <motion.p className="hero-desc" {...item(0.28)}>
-              I&apos;m an Android developer focused on building real-world applications with Kotlin, Jetpack, and Clean Architecture. I care about performance, thoughtful UI, and writing code that&apos;s easy to maintain.
+              Android Developer with 2+ years of experience building high-performance apps in Kotlin, Java, and XML — using MVVM, Clean Architecture, Retrofit, and Firebase, with a strong focus on clean code, polished UI, and reliable performance.
             </motion.p>
             <motion.div className="hero-cta" {...item(0.38)}>
               <a href="#projects" className="btn btn-primary">
@@ -53,20 +53,20 @@ export function Hero() {
 
           <motion.div className="hero-meta" {...item(0.48)}>
             <div className="hero-meta-item">
-              <strong>Specialization</strong>
-              Native Android · Kotlin
+              <strong>Experience</strong>
+              2+ years · Kotlin & Java
             </div>
             <div className="hero-meta-item">
               <strong>Architecture</strong>
               MVVM · Clean Architecture
             </div>
             <div className="hero-meta-item">
-              <strong>Tooling</strong>
-              Jetpack · Coroutines · Hilt
+              <strong>Stack</strong>
+              Retrofit · Firebase · Compose
             </div>
             <div className="hero-meta-item">
               <strong>Focus</strong>
-              Real-world applications
+              Clean code · Polished UI
             </div>
           </motion.div>
         </div>

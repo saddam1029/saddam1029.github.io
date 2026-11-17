@@ -18,7 +18,7 @@ export function Skills() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="section-intro">
-            A focused toolkit built around the modern Android ecosystem — from language fundamentals to architecture, networking, and platform services.
+            Technical skills from my professional toolkit — languages and UI, Android platform work, architecture and APIs, data and backend services, monetization, AI tools, and development practices.
           </p>
         </Reveal>
         <div className="skills-grid">

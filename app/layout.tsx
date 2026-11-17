@@ -28,10 +28,11 @@ export const metadata: Metadata = {
     template: `%s | ${PERSONAL.name} — Android Developer`,
   },
   description:
-    'Android developer specializing in Kotlin, Jetpack, MVVM, and Clean Architecture. View my Android app portfolio and case studies.',
+    'Android Developer with 2+ years of experience building high-performance apps using Kotlin, Java, MVVM, Clean Architecture, Retrofit, and Firebase.',
   openGraph: {
     title: `${PERSONAL.name} | Android Developer`,
-    description: 'Android developer specializing in Kotlin, Jetpack, MVVM, and Clean Architecture.',
+    description:
+      'Android Developer with 2+ years of experience building high-performance apps using Kotlin, Java, MVVM, Clean Architecture, Retrofit, and Firebase.',
     url: PERSONAL.siteUrl,
     type: 'website',
     images: [{ url: '/assets/og-image.png' }],
@@ -39,7 +40,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: `${PERSONAL.name} | Android Developer`,
-    description: 'Android developer specializing in Kotlin, Jetpack, MVVM, and Clean Architecture.',
+    description:
+      'Android Developer with 2+ years of experience building high-performance apps using Kotlin, Java, MVVM, Clean Architecture, Retrofit, and Firebase.',
   },
   icons: {
     icon: '/assets/favicon.svg',
