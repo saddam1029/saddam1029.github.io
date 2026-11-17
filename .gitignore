@@ -7,9 +7,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.next
+out
 dist
 dist-ssr
 *.local
+_legacy
 
 .vscode/*
 !.vscode/extensions.json
